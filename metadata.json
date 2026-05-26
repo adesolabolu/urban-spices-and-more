@@ -1,0 +1,6 @@
+{
+  "name": "Urban Spices and More",
+  "description": "Premium Luxury Catering & Gourmet Grazing Boards in Abuja",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
