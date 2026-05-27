@@ -1,62 +1,86 @@
 import { motion } from 'motion/react';
-import { ASSETS } from '../assets';
+import { ASSETS, BRAND } from '../assets';
+import { ShoppingBag, Clock, ShieldCheck, Users } from 'lucide-react';
 
 export function About() {
+  const features = [
+    { icon: <ShoppingBag size={20}/>, title: "Online Order" },
+    { icon: <Clock size={20}/>, title: "24/7 Service" },
+    { icon: <ShieldCheck size={20}/>, title: "Premium Quality" },
+    { icon: <Users size={20}/>, title: "Organized Foodie Place" },
+  ];
+
   return (
-    <section id="about" className="py-24 md:py-32 bg-cream overflow-hidden">
+    <section id="about" className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           
+          {/* Left Visual: Overlapping Rounded Images */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="w-full lg:w-1/2 relative"
+            transition={{ duration: 0.6 }}
+            className="w-full lg:w-1/2 relative min-h-[400px] flex justify-center items-center"
           >
-            <div className="aspect-[3/4] relative z-10 rounded-sm overflow-hidden shadow-2xl">
-              <img 
-                src={ASSETS.owner.preview}
-                alt="Founder of Urban Spices and More"
-                data-asset-name={ASSETS.owner.filename}
-                className="w-full h-full object-cover"
-              />
+            {/* Soft decorative background shape */}
+            <div className="absolute w-[80%] h-[80%] bg-[#FEF4E6] rounded-[40%_60%_70%_30%/40%_50%_60%_50%] -z-10 animate-[spin_20s_linear_infinite]" />
+            
+            <div className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-full border-[8px] border-white shadow-2xl overflow-hidden z-10">
+               <img 
+                 src={ASSETS.owner.preview}
+                 alt="Owner"
+                 data-asset-name={ASSETS.owner.filename}
+                 className="w-full h-full object-cover"
+               />
             </div>
-            {/* Decorative element behind image */}
-            <div className="absolute top-10 -left-6 md:-left-10 w-full h-full bg-onyx/5 z-0 rounded-sm"></div>
+            
+            <div className="absolute bottom-4 right-8 lg:-right-4 w-40 h-40 rounded-full border-[6px] border-white shadow-xl overflow-hidden z-20">
+               <img 
+                 src={ASSETS.plates.eventSpread.preview}
+                 alt="Spread"
+                 data-asset-name={ASSETS.plates.eventSpread.filename}
+                 className="w-full h-full object-cover"
+               />
+            </div>
           </motion.div>
 
+          {/* Right Text Content */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="w-full lg:w-1/2 space-y-8"
           >
-            <h2 className="text-4xl md:text-5xl font-serif text-onyx leading-tight">
-              The Founder’s Touch
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-onyx leading-[1.2]">
+              We Are More Than <br/> Multiple Service
             </h2>
             
-            <div className="space-y-6 text-lg text-charcoal/80 font-light leading-relaxed">
-              <p>
-                At Urban Spices and More, we believe that food is not merely sustenance; it is an experience, an art form, and the centerpiece of every memorable gathering. 
-              </p>
-              <p>
-                Our philosophy is rooted in uncompromising freshness and impeccable presentation. From hand-selecting the finest artisan cheeses to curating visually dramatic floral highlights for our grand grazing tables, every detail is meticulously staged to elevate your event.
-              </p>
-              <p className="border-l-2 border-brand-red pl-6 italic font-serif text-xl text-onyx/90 my-8">
-                "We don't just cater events. We design high-end culinary landscapes that captivate the senses and leave a lasting impression."
-              </p>
+            <p className="text-charcoal font-sans text-lg leading-relaxed max-w-lg">
+              This is a type of catering which typically serves food and drinks, in addition to light refreshments such as baked goods or snacks. The absolute best culinary landscapes.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-4 pt-4">
+              {features.map((feat, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <div className="text-[#F6A33C] w-10 h-10 rounded-full bg-[#FEF4E6] flex items-center justify-center shrink-0">
+                    {feat.icon}
+                  </div>
+                  <span className="font-display font-medium text-onyx">{feat.title}</span>
+                </div>
+              ))}
             </div>
             
-            <div className="pt-4">
-              <img 
-                src={ASSETS.logo.preview}
-                alt="Urban Spices Logo"
-                data-asset-name={ASSETS.logo.filename}
-                className="h-12 w-auto opacity-80 grayscale mix-blend-multiply"
-              />
+            <div className="pt-8">
+              <a 
+                href="#about" 
+                className="bg-[#F6A33C] text-white px-8 py-4 rounded-full font-display font-semibold hover:bg-orange-500 transition-colors shadow-lg shadow-orange-500/30 inline-block"
+              >
+                About Us
+              </a>
             </div>
+            
           </motion.div>
 
         </div>

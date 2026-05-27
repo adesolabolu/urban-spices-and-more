@@ -3,29 +3,28 @@ import { ASSETS } from '../assets';
 
 export function Gallery() {
   const images = [
-    { ...ASSETS.plates.eventSpread, aspect: "aspect-square md:col-span-2 md:row-span-2" },
-    { ...ASSETS.plates.giftBox, aspect: "aspect-[4/5]" },
-    { ...ASSETS.plates.fritterPlate, aspect: "aspect-[4/5]" },
-    { ...ASSETS.plates.grazingDetail, aspect: "aspect-square" },
-    { ...ASSETS.plates.brunchBoard, aspect: "aspect-[16/9] md:col-span-2" },
+    { ...ASSETS.plates.eventSpread, aspect: "col-span-1 md:col-span-2 row-span-2 aspect-square md:aspect-auto" },
+    { ...ASSETS.plates.giftBox, aspect: "col-span-1 aspect-square" },
+    { ...ASSETS.plates.fritterPlate, aspect: "col-span-1 aspect-square" },
+    { ...ASSETS.plates.grazingDetail, aspect: "col-span-1 aspect-square" },
+    { ...ASSETS.plates.brunchBoard, aspect: "col-span-1 md:col-span-2 aspect-square md:aspect-[21/9]" },
   ];
 
   return (
-    <section id="gallery" className="py-24 bg-onyx text-cream relative">
+    <section id="gallery" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <motion.div
-             initial={{ opacity: 0, x: -30 }}
-             whileInView={{ opacity: 1, x: 0 }}
+        <div className="mb-16">
+          <motion.h2
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
-             transition={{ duration: 0.6 }}
+             className="text-4xl md:text-5xl font-display font-bold text-onyx"
           >
-            <h2 className="text-4xl md:text-5xl font-serif text-white">Visual Showcase</h2>
-            <p className="text-cream/60 mt-4 max-w-md font-light">Explore a curated selection of our most exquisite setups, meticulously designed for visual impact and gourmet satisfaction.</p>
-          </motion.div>
+            Visual Showcase
+          </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[minmax(250px,auto)] gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 auto-rows-[minmax(250px,250px)]">
           {images.map((img, idx) => (
             <motion.div
               key={idx}
@@ -33,7 +32,7 @@ export function Gallery() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`relative overflow-hidden group ${img.aspect} bg-charcoal rounded-sm`}
+              className={`relative overflow-hidden group rounded-[2rem] bg-gray-100 ${img.aspect} shadow-sm hover:shadow-xl transition-shadow duration-300`}
             >
               <img 
                 src={img.preview}
@@ -41,7 +40,6 @@ export function Gallery() {
                 data-asset-name={img.filename}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-onyx/20 group-hover:bg-transparent transition-colors duration-500" />
             </motion.div>
           ))}
         </div>
